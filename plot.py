@@ -120,7 +120,11 @@ class Display:
 		
 		#plot format : py name yaxis xaxis \n
 		if len(cont) == 5:
+			#print cont
 			return cont[1], eval(cont[2]), eval(cont[3])
+			
+		#print cont
+		#print "fail " + string
             
         
 	#for reading stdin
