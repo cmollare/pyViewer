@@ -60,6 +60,15 @@ class PlotManager(object):
 		if plotType == "simple":
 			self.createFigure(plotType, parentName, name, ybuf, xbuf)
 			
+		elif plotType == "sub":
+			fig = plt.figure(parentName)
+			nbsub = len(fig.axes)
+			for i in range(nbsub):
+				fig.axes[i].change_geometry(nbsub+1, 1, i+1)
+			
+			ax = fig.add_subplot(nbsub+1, 1, nbsub+1)
+			ax.plot(ybuf, xbuf)
+			
 	def updateCurve(self, plotType, parentName, name, ybuf, xbuf):
 		if plotType == "simple":
 			fig = plt.figure(name)
@@ -69,7 +78,15 @@ class PlotManager(object):
 			axes.autoscale_view(True,True,True)
 		
 		elif (plotType == "sub"):
-			pass
+			fig = plt.figure(parentName)
+			#find the number of the axis in the figure
+			index = self.figList[parentName].index(name)
+			
+			#update
+			axes = fig.axes[index]
+			axes.lines[0].set_data(xbuf, ybuf)
+			axes.relim()
+			axes.autoscale_view(True,True,True)
 
 	
 		

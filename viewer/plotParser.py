@@ -32,11 +32,13 @@ class PlotParser(object):
 		return PlotData(plotType="simple", name=cont[1], y=eval(cont[2]), x=eval(cont[3]))
 		
 	def parseSubPlot(self, string):
+		cont = string.split(" ")
 		if len(cont) != 6:
 			return None
 		return PlotData(plotType="sub", parentName=cont[1], name=cont[2], y=eval(cont[3]), x=eval(cont[4]))
 	
 	def parseMultiPlot(self, string):
+		cont = string.split(" ")
 		if len(cont) != 6:
 			return None
 		return PlotData(plotType="multi", parentName=cont[1], name=cont[2], y=eval(cont[3]), x=eval(cont[4]))
