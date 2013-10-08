@@ -22,6 +22,8 @@ class PlotBuffer(object):
 		self.xbufs[i].append(plotData.x)
 	
 	def add(self, plotData):
+		#add current data to buffer
+		#if it does not exist, it creates it
 		if plotData.isValid:
 			if self.isBufExist(plotData.name):
 				self.addToBuf(plotData)
