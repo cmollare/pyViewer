@@ -69,6 +69,10 @@ class PlotManager(object):
 			ax = fig.add_subplot(nbsub+1, 1, nbsub+1)
 			ax.plot(ybuf, xbuf)
 			
+		elif plotType == "multi":
+			fig = plt.figure(parentName)
+			plt.plot(ybuf, xbuf)
+			
 	def updateCurve(self, plotType, parentName, name, ybuf, xbuf):
 		if plotType == "simple":
 			fig = plt.figure(name)
@@ -85,6 +89,14 @@ class PlotManager(object):
 			#update
 			axes = fig.axes[index]
 			axes.lines[0].set_data(xbuf, ybuf)
+			axes.relim()
+			axes.autoscale_view(True,True,True)
+			
+		elif plotType == "multi":
+			fig = plt.figure(parentName)
+			index = self.figList[parentName].index(name)
+			axes = fig.axes[0]
+			axes.lines[index].set_data(xbuf, ybuf)
 			axes.relim()
 			axes.autoscale_view(True,True,True)
 
