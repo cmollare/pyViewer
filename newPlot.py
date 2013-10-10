@@ -29,7 +29,7 @@ class App:
 		
 		while True:
 			try:
-				sleep(0.05)
+				sleep(0.005)
 				self.plotManager.update(self.buffers)
 
 			except KeyboardInterrupt:
@@ -40,7 +40,7 @@ class App:
 	def readPipe(self):
 		print 'start thread'
 		while not self._stopEvent.isSet():
-			sleep(0.1)
+			sleep(0.001)
 			line = sys.stdin.readline()
 			res = PlotParser(line).getPlotData()
 			if not (res == None):

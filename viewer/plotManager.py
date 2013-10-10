@@ -41,7 +41,7 @@ class PlotManager(object):
 		if plotType == "simple":
 			fig = plt.figure(name)
 			plt.ylim([-10, 10])
-			plt.plot(xbuf, ybuf)
+			plt.plot(xbuf, ybuf, label=name)
 			axis = plt.gca()
 			axis.set_autoscale_on(True)
 			axis.autoscale_view(True,True,True)
@@ -49,11 +49,12 @@ class PlotManager(object):
 		elif (plotType == "sub") or (plotType == "multi"):
 			fig = plt.figure(parentName)
 			ax = fig.add_subplot(111)
-			ax.plot(xbuf, ybuf)
+			ax.plot(xbuf, ybuf, label=name)
 			axis = plt.gca()
 			axis.set_autoscale_on(True)
 			axis.autoscale_view(True,True,True)
-			
+		
+		plt.legend()
 			
 		
 	def addPlotToFigure(self, plotType, parentName, name, ybuf, xbuf):
@@ -67,11 +68,13 @@ class PlotManager(object):
 				fig.axes[i].change_geometry(nbsub+1, 1, i+1)
 			
 			ax = fig.add_subplot(nbsub+1, 1, nbsub+1)
-			ax.plot(ybuf, xbuf)
+			ax.plot(ybuf, xbuf, label=name)
 			
 		elif plotType == "multi":
 			fig = plt.figure(parentName)
-			plt.plot(ybuf, xbuf)
+			plt.plot(ybuf, xbuf, label=name)
+		
+		plt.legend()
 			
 	def updateCurve(self, plotType, parentName, name, ybuf, xbuf):
 		if plotType == "simple":
