@@ -13,10 +13,10 @@ def sinus(freq):
 	
 def display():
 
-	string =  'pySubPlot lol plot1 ' + str(sinus(0.005)) + ' ' + str(numIteration) + ' '
+	string =  'pySubPlot lol plot1 ' + str(sinus(0.005)) + ' ' + str(numIteration/100.) + ' '
 
 	if numIteration > 20:
-		string += '\npySubPlot lol plot2 ' + str(sinus(0.01)) + ' ' + str(numIteration) + ' '
+		string += '\npySubPlot lol plot2 ' + str(sinus(0.01)) + ' '
 		
 	return string
 

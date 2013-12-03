@@ -10,7 +10,11 @@ from time import sleep
 
 class App:
 	
-	def __init__(self, serialBaud=None, serialPort=None):
+	def __init__(self, serialBaud=None, serialPort=None, displayPeriod=0.005, readingPeriod=0.0001, buffSize=500):
+		self.displayPeriod=displayPeriod #display period (1/freq)
+		self.readingPeriod=readingPeriod #reading thread period
+		self.buffSize=buffSize #size of Buffers
+		
 		self.run = True
 		if (serialBaud != None) and (serialPort != None):
 			print 'serial mode'
@@ -20,16 +24,18 @@ class App:
 		else:
 			print 'pipeline mode'
 			self.readThread = threading.Thread(None, self.readPipe)
+			
 		self._stopEvent = threading.Event()
 		
 	def loop(self):
-		self.buffers = PlotBuffer(1000)
-		self.plotManager = PlotManager()
-		self.readThread.start()
+		self.buffers = PlotBuffer(self.buffSize) #plot data
+		self.plotManager = PlotManager() #display interface
+		self.readThread.start() #start reading thread
 		
+		#display loop
 		while True:
 			try:
-				sleep(0.005)
+				sleep(self.displayPeriod) #display period
 				self.plotManager.update(self.buffers)
 
 			except KeyboardInterrupt:
@@ -40,7 +46,7 @@ class App:
 	def readPipe(self):
 		print 'start thread'
 		while not self._stopEvent.isSet():
-			sleep(0.001)
+			sleep(self.readingPeriod)
 			line = sys.stdin.readline()
 			res = PlotParser(line).getPlotData()
 			if not (res == None):

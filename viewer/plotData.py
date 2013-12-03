@@ -1,6 +1,8 @@
 #!/usr/bin/python2.7
 # -*-coding:Latin-1 -*
 
+#formated data
+
 class PlotData(object):
 	
 	def __init__(self,\
@@ -28,20 +30,20 @@ class PlotData(object):
 		
 		print "string must have one of the following format :"
 		print "-----------------------------------------------"
-		print "		pySimplePlot <name> <y> <x>"
+		print "		pySimplePlot <name> <y> [<x>]"
 		print "		pySubPlot <parentName> <name> <y> <x>"
 		print "		pyMultiPlot <parentName> <name> <y> <x> (in implementation)"
 		print "-----------------------------------------------"
 		
 	def checkData(self):
 		
-		if ((self.plotType == "simple") and (self.name != None) and (self.y != None) and (self.x != None)):
+		if ((self.plotType == "simple") and (self.name != None) and (self.y != None)):
 			return 1
 			
-		if ((self.plotType == "sub") and (self.parentName != None) and (self.name != None) and (self.y != None) and (self.x != None)):
+		if ((self.plotType == "sub") and (self.parentName != None) and (self.name != None) and (self.y != None)):
 			return 1
 			
-		if ((self.plotType == "multi") and (self.parentName != None) and (self.name != None) and (self.y != None) and (self.x != None)):
+		if ((self.plotType == "multi") and (self.parentName != None) and (self.name != None) and (self.y != None)):
 			return 1
 			
 		return 0
