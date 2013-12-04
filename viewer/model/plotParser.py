@@ -2,7 +2,6 @@
 # -*-coding:Latin-1 -*
 
 from __future__ import print_function #for using print(string, end='') (remove \n at the end)
-from plotData import *
 
 class PlotParser(object):
 	

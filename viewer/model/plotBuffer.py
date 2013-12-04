@@ -2,7 +2,6 @@
 # -*-coding:Latin-1 -*
 
 from collections import deque
-import plotData
 import os
 
 class PlotBuffer(object):

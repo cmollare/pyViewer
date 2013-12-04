@@ -1,7 +1,6 @@
 #!/usr/bin/python2.7
 # -*-coding:Latin-1 -*
 
-import plotBuffer
 from collections import defaultdict
 from matplotlib import pyplot as plt
 
